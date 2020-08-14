@@ -24,9 +24,12 @@ def _replace_string(match):
     return match.group(1) + random_picked + ['', match.group(3)][random_picked==split_strings[-1]]
 
 def replace_macros(string):
+    # Open macro file
     macrofile = json.loads(open("./spintaxmacros.json","r").read())[0]
     for macro in macrofile:
+        # Replace the macro with the value of that macro
         string = string.replace(macro,macrofile.get(macro))
+
     return string
 
 
