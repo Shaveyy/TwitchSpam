@@ -3,7 +3,7 @@
 * Follow bot
 * Spam reporting 
 * Spam bot, that evades shadowbans with Tor 
-* and a command to stream a video using one of the accounts (pretty sure its the same method the one of dudes who spammed the Artifact section did)
+* and a command to stream a video using one of the accounts
 
 It all works using the undocumented API Twitch internally uses.
 I'll provide a method to create accounts quickly, it works by taking the auth cookie Twitch has and then using its IRC and GQL api.
