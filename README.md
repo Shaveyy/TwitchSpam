@@ -30,13 +30,7 @@ function getCookie(name) {
 }
 
 var token = getCookie("auth-token")
-console.log("\n")
-console.log("\n")
-console.log("CODE TO PASTE IN DISCORD:")
-console.log("\n")
-console.log("!donateoauth oauth:" + token)
-console.log("\n")
-console.log("\n")
+console.log("\n\n\n\nCODE TO PASTE IN DISCORD:\n!donateoauth oauth:" + token + "\n\n\n\n")
 ```
 
 Then do
