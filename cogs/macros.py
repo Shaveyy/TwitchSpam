@@ -11,9 +11,9 @@ class MacrosCog(commands.Cog):
         macrofile = json.loads(open("./spintaxmacros.json","r").read())[0]
         message = ""
         for macro in macrofile:
-            message += "**" + macro + "**\r\n"
-            
-        await ctx.message.channel.send("Macros:\r\n" + message)
+            message += "**" + macro + "**\n"
+
+        await ctx.message.channel.send("Macros:\n" + message)
 
 # add this cog to the bot
 def setup(bot):
