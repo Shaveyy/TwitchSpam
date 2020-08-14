@@ -3,6 +3,8 @@ import sys
 import random
 # Import warnings and enable DeprecationWarning's for parse function
 import warnings
+import json
+
 warnings.simplefilter('always', DeprecationWarning)
 
 if sys.version_info[0] == 2:
@@ -21,6 +23,12 @@ def _replace_string(match):
     random_picked = random.choice(split_strings)
     return match.group(1) + random_picked + ['', match.group(3)][random_picked==split_strings[-1]]
 
+def replace_macros(string):
+    macrofile = json.loads(open("./spintaxmacros.json","r").read())[0]
+    for macro in macrofile:
+        string = string.replace(macro,macrofile.get(macro))
+    return string
+
 
 def spin(string, seed=None):
     """
@@ -29,7 +37,6 @@ def spin(string, seed=None):
     :param seed:
     :return string:
     """
-
     # As look behinds have to be a fixed width I need to do a "hack" where
     # a temporary string is used. This string is randomly chosen. There are
     # 1.9e62 possibilities for the random string and it uses uncommon Unicode
@@ -38,6 +45,7 @@ def spin(string, seed=None):
     characters = [chr(x) for x in range(1234, 1368)]    
     global random_string
     random_string = ''.join(random.sample(characters, 30))
+    string = replace_macros(string)
     
     # If the user has chosen a seed for the random numbers use it
     if seed is not None:
@@ -52,7 +60,7 @@ def spin(string, seed=None):
     # Regex to find all non escaped spintax brackets
     spintax_bracket = r'(?<!\\)((?:\\{2})*)\{([^}{}]+)(?<!\\)((?:\\{2})*)\}'
     spintax_bracket = re.compile(spintax_bracket)
-
+    
     # Need to iteratively apply the spinning because of nested spintax
     while True:
         new_string = re.sub(spintax_bracket, _replace_string, string)
