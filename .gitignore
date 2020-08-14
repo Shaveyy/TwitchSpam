@@ -1,0 +1,8 @@
+venv/
+__pycache__/
+*.db
+oauthlist.txt
+*.rar
+JanusPNG/
+tools/
+accounts.txt
