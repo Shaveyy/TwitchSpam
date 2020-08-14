@@ -59,4 +59,6 @@ class Bot:
         accounts = open(accountlist).read().split("\n")
         
         for i in range(amount):
-            self.socks.append(self.StartSock(random.choice(accounts),proxyip,proxyport))
+            _token = random.choice(accounts)
+            self.socks.append(self.StartSock(_token,proxyip,proxyport))
+            accounts.pop(accounts.index(_token))
