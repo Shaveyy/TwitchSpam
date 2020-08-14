@@ -40,3 +40,8 @@ console.log("!donateoauth oauth:" + token)
 console.log("\n")
 console.log("\n")
 ```
+
+Then do
+```
+!donateoauth {oauth}
+```
