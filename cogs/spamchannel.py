@@ -41,7 +41,9 @@ class SpamCog(commands.Cog):
                 p = re.search("@(.*?);",recvdata)
                 if p:
                     follow = recvdata.split(";")[8]
-                    if follow != "followers-only=-1":
+                    if follow.split("=")[1] != "-1":
+                        if follow.split("=")[1] != "0":
+                            time.sleep(int(follow.split("=")[1]))
                         followers = True
                     break
         except: pass
