@@ -20,6 +20,8 @@ pip3 install -r requirements.txt
 python main.py
 ```
 
+## Donating Accounts:
+
 The JS code that is used with !donateoauth:
 
 ```JavaScript
