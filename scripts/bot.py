@@ -25,14 +25,14 @@ class Bot:
         return s
 
     def SendMessage(self,message,account=None):
-        message = "PRIVMSG #{0} :{1}\r\n".format(self.channel,spintax.spintax.spin(message))
+        message = "PRIVMSG #{0} :{1}\r\n".format(self.channel,message)
         if(account):
             s = self.socks[account]
             s.send(message.encode())
         else:
             for s in self.socks:
                 try:
-                    s.send(message.encode())
+                    s.send(spintax.spintax.spin(message).encode())
                 except:
                     pass   
             
