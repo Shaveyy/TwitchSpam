@@ -12,7 +12,7 @@ class MacrosCog(commands.Cog):
         message = ""
         for macro in macrofile:
             message += "**" + macro + "**\r\n"
-        message.pop(0)
+            
         await ctx.message.channel.send("Macros:\r\n" + message)
 
 # add this cog to the bot
