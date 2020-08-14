@@ -47,7 +47,7 @@ class Bot:
             if platform.system() == "Darwin":
                 os.system("brew services restart tor")
             else:
-                os.system("service tor restart")
+                os.system("/usr/sbin/service tor restart")
             time.sleep(.5)
             try:
                 nymsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
