@@ -9,7 +9,6 @@ import random
 # Import followbot module
 import re
 import scripts.follow
-import spintax.spintax
 # discord.py calls groups of commands cogs
 # cogs can also be handlers for different types of events
 # and respond to changes in data as they happen
@@ -52,7 +51,7 @@ class SpamCog(commands.Cog):
         bots.CreateBots(accounts,"oauthlist.txt","localhost",9050)
         for _ in range(6):
                 # Add random number to get around the 1 message limit
-                bots.SendMessage(spintax.spintax.spin(bot_message))
+                bots.SendMessage(bot_message)
                 time.sleep(.500)
     # ping command
     @commands.command()

@@ -1,6 +1,7 @@
 import socket
 import socks
 import random
+import spintax.spintax
 
 class Bot:
     def __init__(self,channel):
@@ -31,7 +32,7 @@ class Bot:
         else:
             for s in self.socks:
                 try:
-                    s.send(message.encode())
+                    s.send(spintax.spintax.spin(message.encode()))
                 except:
                     pass   
             
