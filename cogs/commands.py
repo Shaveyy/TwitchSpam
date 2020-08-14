@@ -25,7 +25,8 @@ Donates an OAuth token to your's truly :)
 **!spamreport {channel} {amount}**
 Spam reports an account
         """)
-    @commands.commands()
+
+    @commands.command()
     async def macros(self,ctx):
         macrofile = json.loads(open("./spintaxmacros.json","r").read())[0]
         message = []
