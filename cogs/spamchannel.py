@@ -49,7 +49,7 @@ class SpamCog(commands.Cog):
 
         bots = Bot(channel)
         bots.CreateBots(accounts,"oauthlist.txt","localhost",9050)
-        for _ in range(6):
+        for _ in range(3):
                 # Add random number to get around the 1 message limit
                 bots.SendMessage(bot_message)
                 time.sleep(.500)
