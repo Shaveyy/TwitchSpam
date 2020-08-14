@@ -44,18 +44,12 @@ class Bot:
             import os
             import time
             import platform
+            # Get a new IP from tor by restarting it 
             if platform.system() == "Darwin":
                 os.system("brew services restart tor")
             else:
                 os.system("/usr/sbin/service tor restart")
             time.sleep(.5)
-            try:
-                nymsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                nymsock.connect(("127.0.0.1",9050))
-                nymsock.send("AUTHENTICATE \"password\"\r\nSIGNAL NEWNYM\r\n".encode())
-                nymsock.close()
-            except:
-                pass
         accounts = open(accountlist).read().split("\n")
         
         for i in range(amount):
