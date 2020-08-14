@@ -12,18 +12,18 @@ We also use Tor to evade shadowbans
 
 WSL is installable by the Windows store I'd recommend getting Ubuntu
 
-##Using it on WSL or Linux:
-`sudo apt-get install python3`
-`sudo apt-get install tor`
-`cd to the dir you extracted it to`
-`pip3 install -r requirements.txt`
-`python main.py`
-
-The bot was written with Linux in mind so I'd recommend WSL 
+## Using it on WSL or Linux:
+```Bash
+sudo apt-get install python3
+sudo apt-get install tor
+cd to the dir you extracted it to
+pip3 install -r requirements.txt
+python main.py
+```
 
 The JS code that is used with !donateoauth:
 
-```
+```JavaScript
 function getCookie(name) {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
