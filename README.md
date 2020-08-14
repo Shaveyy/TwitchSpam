@@ -16,7 +16,6 @@ WSL is installable by the Windows store I'd recommend getting Ubuntu
 ```Bash
 sudo apt-get install python3
 sudo apt-get install tor
-cd to the dir you extracted it to
 pip3 install -r requirements.txt
 python main.py
 ```
