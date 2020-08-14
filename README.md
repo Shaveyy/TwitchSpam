@@ -2,17 +2,15 @@
 
 * Follow bot
 * Spam reporting 
-* Spam bot
+* Spam bot, that evades shadowbans with Tor 
 * and a command to stream a video using one of the accounts (pretty sure its the same method the one of dudes who spammed the Artifact section did)
 
 It all works using the undocumented API Twitch internally uses.
 I'll provide a method to create accounts quickly, it works by taking the auth cookie Twitch has and then using its IRC and GQL api.
-You'll find a simple library for the spambot and all the other things. I'd recommend using something that Windows Subsystem for Linux or just getting a Linux box.
-We also use Tor to evade shadowbans
+You'll find a simple library for the spambot, along other things.
 
-WSL is installable by the Windows store I'd recommend getting Ubuntu
 
-## Using it on WSL or Linux:
+## Using it on Linux:
 ```Bash
 sudo apt-get install python3
 sudo apt-get install tor
