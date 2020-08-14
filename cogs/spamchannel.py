@@ -9,7 +9,7 @@ import random
 # Import followbot module
 import re
 import scripts.follow
-import scripts.spintax
+import spintax.spintax
 # discord.py calls groups of commands cogs
 # cogs can also be handlers for different types of events
 # and respond to changes in data as they happen
@@ -42,8 +42,6 @@ class SpamCog(commands.Cog):
                 if p:
                     follow = recvdata.split(";")[8]
                     if follow.split("=")[1] != "-1":
-                        if follow.split("=")[1] != "0":
-                            time.sleep(int(follow.split("=")[1]))
                         followers = True
                     break
         except: pass
@@ -54,7 +52,7 @@ class SpamCog(commands.Cog):
         bots.CreateBots(accounts,"oauthlist.txt","localhost",9050)
         for _ in range(6):
                 # Add random number to get around the 1 message limit
-                bots.SendMessage(scripts.spintax.spin(bot_message))
+                bots.SendMessage(spintax.spintax.spin(bot_message))
                 time.sleep(.500)
     # ping command
     @commands.command()
