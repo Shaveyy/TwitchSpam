@@ -1,7 +1,7 @@
 
 import configparser
 config = configparser.ConfigParser()
-config.read('example.ini')
+config.read('config.ini')
 
 token = config['DEFAULT']['Token']
 oauthsfile = config['DEFAULT']['OAuthFile']
