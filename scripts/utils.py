@@ -11,7 +11,7 @@ import scripts.streamkeygen as skey
 import subprocess
 import socket
 import re
-from logging.logging as logging
+import logger
 
 def test_oauth(oauth):
     if(":" in oauth):
@@ -58,7 +58,7 @@ def GLHF(oauth):
 def streamthread(stream_key,video_file=""):
     if(len(video_file) > 0):
         print(video_file)
-        logging.log(video_file)
+        logger.log(video_file)
         subprocess.call(['./stream', stream_key,video_file])    
         return
 
