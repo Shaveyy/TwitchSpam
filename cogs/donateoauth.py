@@ -5,6 +5,7 @@ import scripts.utils as util
 import threading
 from scripts.sql import SQLCon
 import re
+import config.config as config
 
 class DonateCog(commands.Cog):
     def __init__(self, bot):
@@ -24,14 +25,14 @@ class DonateCog(commands.Cog):
             await ctx.message.delete()
             return
 
-        oauths = open("oauthlist.txt","r").read().split("\n")
+        oauths = open(config.oauthsfile,"r").read().split("\n")
         for token in oauths:
             if(token == oauth):
                 await ctx.message.author.send("OAuth is a duplicate")
                 await ctx.message.delete()
                 return
         
-        file = open("oauthlist.txt","a+")
+        file = open(config.oauthsfile,"a+")
         file.write(oauth + "\r\n")
         file.close()
 

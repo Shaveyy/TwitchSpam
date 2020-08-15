@@ -9,6 +9,7 @@ import random
 # Import followbot module
 import re
 import scripts.follow
+import config.config as config
 # discord.py calls groups of commands cogs
 # cogs can also be handlers for different types of events
 # and respond to changes in data as they happen
@@ -48,7 +49,7 @@ class SpamCog(commands.Cog):
             scripts.follow.start_following(channel,accounts)
 
         bots = Bot(channel)
-        bots.CreateBots(accounts,"oauthlist.txt","localhost",9050)
+        bots.CreateBots(accounts,config.oauthsfile,"localhost",9050)
         for _ in range(3):
                 # Add random number to get around the 1 message limit
                 bots.SendMessage(bot_message)

@@ -5,7 +5,7 @@ import asyncio
 import configparser
 import sys, traceback
 import glob
-import configparser
+import config.config as config
 # startup stuff for debugging
 print('using discordpy version', discord.__version__)
 
@@ -40,8 +40,5 @@ async def on_ready():
     # only way this can do them any good is by letting them know what the help command is
     await client.change_presence(activity=discord.Game('Try !commands'))
 
-config = configparser.ConfigParser()
-config.read('example.ini')
-
 # now actually connect the bot
-client.run(config['DEFAULT']['Token']) #"NzM1OTExODAwNjM3NDg5MzA1.XxnMWw.unlzbthL0Jxtacfq1WgPBf3nVGI"
+client.run(config.token) #"NzM1OTExODAwNjM3NDg5MzA1.XxnMWw.unlzbthL0Jxtacfq1WgPBf3nVGI"

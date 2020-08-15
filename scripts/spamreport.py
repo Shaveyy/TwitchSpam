@@ -1,6 +1,7 @@
 import requests
 import json
 import threading
+import config.config as config
 
 def channelbyusername(channel):
     url = "https://api.twitch.tv/kraken/users?login=" + channel
@@ -37,7 +38,7 @@ def reportchannel(channel_id,i):
     print(response.text)
 
 def start_reporting(channel,amount):
-    files = open("oauthlist.txt").read().split("\n")
+    files = open(config.oauthsfile).read().split("\n")
     chan_id = channelbyusername(channel)
     for i in range(amount): #len(files)
         if i > len(files):

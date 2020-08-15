@@ -1,9 +1,10 @@
 import random
 import json
 import requests
+import config.config as config
 
 def GenStreamKey(title,game):
-    oauth = open("accounts.txt").read().split("\n")
+    oauth = open(config.StreamOAuths).read().split("\n")
     _oauth = random.choice(oauth).split(":")[1]
 
     headers = {

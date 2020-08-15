@@ -1,6 +1,7 @@
 import requests
 import threading
 import json
+import config.config as config
 
 def channelbyusername(channel):
     url = "https://api.twitch.tv/kraken/users?login=" + channel
@@ -36,7 +37,7 @@ def followchannel(f,channel_id,i):
     requests.post('https://gql.twitch.tv/gql', headers=headers, data=data)
     
 def start_following(channel,amount):
-    f = open("oauthlist.txt").read().split("\n")
+    f = open(config.oauthsfile).read().split("\n")
     if(not f):
         print("File could not open")
     chan_id = channelbyusername(channel)
