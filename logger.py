@@ -1,7 +1,7 @@
 
 def log(string):
     f = open("log.txt","a+")
-    if type(string) is str:
+    if type(string) is not str:
         string = repr(string)
 
     if f.closed:
