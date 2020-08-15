@@ -12,10 +12,10 @@ You'll find a simple library for the spambot, along other things.
 
 ## Using it on Linux:
 ```console
-sudo apt-get install python3
-sudo apt-get install tor
-pip3 install -r requirements.txt
-python main.py
+spammer@linux:TwitchSpam$ sudo apt-get install python3
+spammer@linux:TwitchSpam$ sudo apt-get install tor
+spammer@linux:TwitchSpam$ pip3 install -r requirements.txt
+spammer@linux:TwitchSpam$ python main.py
 ```
 
 ## Donating Accounts:
