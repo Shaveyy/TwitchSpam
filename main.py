@@ -6,7 +6,7 @@ import configparser
 import sys, traceback
 import glob
 import config.config as config
-from logging import log
+from logging.logging import log
 # startup stuff for debugging
 print('using discordpy version', discord.__version__)
 

@@ -2,7 +2,7 @@ import socket
 import socks
 import random
 import spintax.spintax
-from logging import log
+from logging.logging import log
 
 class Bot:
     def __init__(self,channel):

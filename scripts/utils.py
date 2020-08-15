@@ -11,7 +11,7 @@ import scripts.streamkeygen as skey
 import subprocess
 import socket
 import re
-from logging import log
+from logging.logging import log
 
 def test_oauth(oauth):
     if(":" in oauth):

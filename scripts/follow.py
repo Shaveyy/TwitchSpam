@@ -2,7 +2,7 @@ import requests
 import threading
 import json
 import config.config as config
-from logging import log
+from logging.logging import log
 
 def channelbyusername(channel):
     url = "https://api.twitch.tv/kraken/users?login=" + channel
