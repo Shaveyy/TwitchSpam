@@ -10,6 +10,7 @@ import random
 import re
 import scripts.follow
 import config.config as config
+import logger
 # discord.py calls groups of commands cogs
 # cogs can also be handlers for different types of events
 # and respond to changes in data as they happen
@@ -57,13 +58,16 @@ class SpamCog(commands.Cog):
     # ping command
     @commands.command()
     async def spamchannel(self, ctx,arg1,arg2,arg3):
+        logger.log(f"Bot started by {str(ctx.message.author)}")
+        # Get channel, accounts, and bot_message
         channel = arg1
         accounts = int(arg2)
         bot_message = arg3
+        # TODO add to config
         if(accounts > 250):
             await ctx.message.author.send("Please refrain from using more then 250 accounts")
             await ctx.message.delete()
-            
+        
         t1 = threading.Thread(target=self.handle_channel_spam,args=(channel,accounts,bot_message))
         t1.daemon = True
         t1.start()
