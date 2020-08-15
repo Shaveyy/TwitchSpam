@@ -1,9 +1,9 @@
 # TwitchSpam
 
-* Follow bot
-* Spam reporting 
-* Spam bot, that evades shadowbans with Tor 
-* and a command to stream a video using one of the accounts
+* Follow bot.
+* Spam reporting.
+* Spam bot, that evades shadowbans with Tor.
+* A command to stream a video to Twitch using one of the accounts.
 
 It all works using the undocumented API Twitch internally uses.
 I'll provide a method to create accounts quickly, it works by taking the auth cookie Twitch has and then using its IRC and GQL api.
@@ -11,7 +11,7 @@ You'll find a simple library for the spambot, along other things.
 
 
 ## Using it on Linux:
-```Bash
+```console
 sudo apt-get install python3
 sudo apt-get install tor
 pip3 install -r requirements.txt
