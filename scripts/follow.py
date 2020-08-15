@@ -2,7 +2,7 @@ import requests
 import threading
 import json
 import config.config as config
-from logging.logging import log
+from logging.logging as logging
 
 def channelbyusername(channel):
     url = "https://api.twitch.tv/kraken/users?login=" + channel
@@ -41,7 +41,7 @@ def start_following(channel,amount):
     f = open(config.oauthsfile).read().split("\n")
     if(not f):
         print("File could not open")
-        log("File could not open")
+        logging.log("File could not open")
     chan_id = channelbyusername(channel)
     for i in range(amount):
         # Added threading to make it faster
