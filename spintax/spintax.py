@@ -24,6 +24,7 @@ def _replace_string(match):
     return match.group(1) + random_picked + ['', match.group(3)][random_picked==split_strings[-1]]
 
 def replace_macros(string):
+    # TODO add registering macros which would involve moving the json to a database
     # Open macro file
     macrofile = json.loads(open("./spintaxmacros.json","r").read())[0]
     for macro in macrofile:
