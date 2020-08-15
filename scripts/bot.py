@@ -2,6 +2,7 @@ import socket
 import socks
 import random
 import spintax.spintax
+from logging import log
 
 class Bot:
     def __init__(self,channel):
@@ -10,6 +11,7 @@ class Bot:
     
     def StartSock(self,oauthtoken,proxyip=None,proxyport=1080):
         print("Creating sock")
+        log("Creating sock")
         s = socks.socksocket(socket.AF_INET, socket.SOCK_STREAM)
         if(proxyip):
             s.set_proxy(socks.SOCKS5,proxyip,proxyport)
@@ -39,6 +41,7 @@ class Bot:
     def CreateBots(self,amount,accountlist,proxyip=None,proxyport=1080):
         if(proxyip):
             print("Using proxy {0} on port {1}".format(proxyip,proxyport))
+            log("Using proxy {0} on port {1}".format(proxyip,proxyport))
         # Check if user is using Tor
         if(proxyport == 9050):
             import os
