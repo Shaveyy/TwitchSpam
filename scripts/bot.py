@@ -11,7 +11,6 @@ class Bot:
     
     def StartSock(self,oauthtoken,proxyip=None,proxyport=1080):
         print("Creating sock")
-        logger.log("Creating sock")
         s = socks.socksocket(socket.AF_INET, socket.SOCK_STREAM)
         if(proxyip):
             s.set_proxy(socks.SOCKS5,proxyip,proxyport)
@@ -55,6 +54,7 @@ class Bot:
             time.sleep(.5)
         accounts = open(accountlist).read().split("\n")
         
+        logger.log(f"Connecting with {amount} bots")
         for i in range(amount):
             _token = random.choice(accounts)
             self.socks.append(self.StartSock(_token,proxyip,proxyport))
