@@ -11,7 +11,7 @@ class StreamCog(commands.Cog):
 
     # ping command
     @commands.command()
-    async def stream(self, ctx,arg1,arg2,arg3):
+    async def stream(self, ctx,arg1,arg2 = None,arg3 = None):
         title = "gameplay of artifact"
         game = "Artifact"
         url = arg1
