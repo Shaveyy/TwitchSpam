@@ -16,4 +16,4 @@ requests==2.24.0
 stem==1.8.0
 urllib3==1.25.9
 websockets==8.1
-yarl==1.4.2
+yarl==1.5.1
