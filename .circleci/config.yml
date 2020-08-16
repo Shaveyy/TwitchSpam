@@ -25,4 +25,4 @@ jobs:
             wget https://pastebin.com/raw/TAuMeW3Q
             mv TAuMeW3Q config.ini
             . venv/bin/activate
-            pylint --errors-only main.py
+            pylint --errors-only $(echo -n ./*/*.py && echo -n ' ' && find . -type d -maxdepth 1 -exec test -e '{}'/__init__.py \; -print | grep -v '^/app/\.')

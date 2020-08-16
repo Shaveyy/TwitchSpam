@@ -38,6 +38,8 @@ def reportchannel(channel_id,i):
     print(response.text)
 
 def start_reporting(channel,amount):
+    # Hacky
+    global files
     files = open(config.oauthsfile).read().split("\n")
     chan_id = channelbyusername(channel)
     for i in range(amount): #len(files)

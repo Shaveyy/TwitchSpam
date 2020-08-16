@@ -4,7 +4,7 @@ import requests
 import config.config as config
 
 def GenStreamKey(title,game):
-    oauth = open(config.StreamOAuths).read().split("\n")
+    oauth = open(config.streamoauthsfile).read().split("\n")
     _oauth = random.choice(oauth).split(":")[1]
 
     headers = {

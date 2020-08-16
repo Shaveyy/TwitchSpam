@@ -41,7 +41,7 @@ def start_following(channel,amount):
     f = open(config.oauthsfile).read().split("\n")
     if(not f):
         print("File could not open")
-        log("File could not open")
+        logger.log("File could not open")
     chan_id = channelbyusername(channel)
     for i in range(amount):
         # Added threading to make it faster
