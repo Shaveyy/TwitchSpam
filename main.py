@@ -1,12 +1,10 @@
 import discord
 from discord.ext import commands
-import asyncio
 # configuration files
 import configparser
 import sys, traceback
 import glob
 import config.config as config
-import logger
 # startup stuff for debugging
 print('using discordpy version', discord.__version__)
 
