@@ -16,13 +16,13 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
+            pip install pylint
       # Step 3: run python
       - run:
           name: run
-          no_output_timeout: 1m
           command: |
             rm -rf config.ini
             wget https://pastebin.com/raw/TAuMeW3Q
             mv TAuMeW3Q config.ini
             . venv/bin/activate
-            python main.py
+            pylint main.py
