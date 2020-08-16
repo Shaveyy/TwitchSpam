@@ -5,13 +5,11 @@ import configparser
 import sys, traceback
 import glob
 import config.config as config
+import logger
 # startup stuff for debugging
 print('using discordpy version', discord.__version__)
 
-# the command prefix should be something unique, many bots 
-# already use !, ., and / for their prefixes
-# you can do any string, 'hey you stupid bot ' would totally work
-client = commands.Bot(command_prefix='!', description='a')
+client = commands.Bot(command_prefix='!', description='Donate money, or even a manual typewriter to me, FOR YOUR ONLY HOPE FOR A FUTURE')
 
 # this is where extensions are added by default
 default_extensions = [
@@ -19,15 +17,21 @@ default_extensions = [
 
 
 if __name__ == '__main__':
-    # Automatically make cog list
-    for _file in glob.glob("cogs/*.py"):
-        default_extensions.append('cogs.' + _file.split("/")[-1].split(".")[0])
-        
+    # Loop through each file in cogs and auto add it to the extensions array
+    for fname in glob.glob("cogs/*.py"):
+        # Ignore __init__.py
+        if(fname.split("/")[-1].split(".")[0] == "__init__"):
+            continue
+
+        default_extensions.append('cogs.' + fname.split("/")[-1].split(".")[0])
+    
+    # Load each extension
     for extension in default_extensions:
         try:
             client.load_extension(extension)
         except Exception as e:
             print('Failed to load extension ' + extension, file=sys.stderr)
+            logger.log('Failed to load extension ' + extension)
             traceback.print_exc()
 
 
