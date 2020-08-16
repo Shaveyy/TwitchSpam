@@ -67,12 +67,12 @@ def streamthread(stream_key,video_file=""):
 
 def start_stream(url,filename,stream_key):
     if "youtube" in url or "bitchute" in url:
-        os.system("youtube-dl {0} -o {1}".format(url,filename))
+        os.system("youtube-dl {0} -o {1}.mp4".format(url,filename))
         import glob
         files = glob.glob(filename + ".*")
         filename = files[0]
     else:
-        os.system(f"wget {url} -O {filename}")
+        os.system(f"wget {url} -O {filename}.mp4")
     encode_video(filename)
     filename += ".flv"
     t1 = threading.Thread(target=streamthread,args=(stream_key,filename))
