@@ -1,3 +1,4 @@
+from datetime import date
 
 def log(string):
     f = open("log.txt","a+")
@@ -8,7 +9,8 @@ def log(string):
         print("Error logging to file")
         
     try:
-        f.write(string + "\r\n")
+        today = date.today()
+        f.write(f"[{today}] {string}\r\n")
         f.close()
     except:
         print("Error logging to file")
