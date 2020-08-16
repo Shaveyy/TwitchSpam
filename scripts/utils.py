@@ -13,6 +13,7 @@ import socket
 import re
 import logger
 import os
+import sys
 
 def test_oauth(oauth):
     if(":" in oauth):
@@ -67,12 +68,12 @@ def streamthread(stream_key,video_file=""):
 
 def start_stream(url,filename,stream_key):
     if "youtube" in url or "bitchute" in url:
-        os.system("youtube-dl {0} -o {1}.mp4".format(url,filename))
+        os.system(f"youtube-dl {url} -o {sys.path[0]}/{filename}.mp4")
         import glob
         files = glob.glob(filename + ".*")
         filename = files[0]
     else:
-        os.system(f"wget {url} -O {filename}.mp4")
+        os.system(f"wget {url} -O {sys.path[0]}/{filename}.mp4")
     encode_video(filename)
     filename += ".flv"
     t1 = threading.Thread(target=streamthread,args=(stream_key,filename))
