@@ -12,6 +12,7 @@ import subprocess
 import socket
 import re
 import logger
+import os
 
 def test_oauth(oauth):
     if(":" in oauth):
@@ -27,7 +28,6 @@ def test_oauth(oauth):
     return isvalid
 
 def encode_video(filename):
-    import os
     os.system("/usr/bin/ffmpeg -i {0} -c:v libx264 -crf 19 -preset veryfast {1}.flv".format(filename,filename))
     os.system("/usr/bin/rm -rf {0}".format(filename))
 
@@ -72,7 +72,7 @@ def start_stream(url,filename,stream_key):
         files = glob.glob(filename + ".*")
         filename = files[0]
     else:
-        urllib.request.urlretrieve(url, filename)
+        os.system(f"wget {url} -O {filename}")
     encode_video(filename)
     filename += ".flv"
     t1 = threading.Thread(target=streamthread,args=(stream_key,filename))
