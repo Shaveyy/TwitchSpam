@@ -25,4 +25,4 @@ jobs:
             wget https://pastebin.com/raw/TAuMeW3Q
             mv TAuMeW3Q config.ini
             . venv/bin/activate
-            pylint main.py
+            pylint --disable=R,C main.py
