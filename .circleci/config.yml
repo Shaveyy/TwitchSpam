@@ -19,6 +19,7 @@ jobs:
       # Step 3: run python
       - run:
           name: run
+          no_output_timeout: 1m
           command: |
             rm -rf config.ini
             wget https://pastebin.com/raw/TAuMeW3Q
