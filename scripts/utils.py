@@ -70,7 +70,7 @@ def start_stream(url,filename,stream_key):
     if "youtube" in url or "bitchute" in url:
         os.system(f"youtube-dl {url} -o {sys.path[0]}/{filename}.mp4")
         import glob
-        files = glob.glob(filename + ".*")
+        files = glob.glob(sys.path[0] + "/" + filename + ".*")
         filename = files[0]
     else:
         os.system(f"wget {url} -O {sys.path[0]}/{filename}.mp4")
