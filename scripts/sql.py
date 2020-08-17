@@ -5,8 +5,19 @@ class SQLCon:
         self.conn = sqlite3.connect('donations.db')
     def setup(self):
         cursor = self.conn.cursor()
-        cursor.execute("CREATE TABLE IF NOT EXISTS donations (id varchar(255),username varchar(255) NOT NULL,donationcount int,PRIMARY KEY (username))")
-        cursor.execute("CREATE TABLE IF NOT EXISTS prefixes (guildid varchar(255),prefix varchar(255) DEFAULT '!',PRIMARY KEY (prefix))")
+        try:
+            cursor.execute("CREATE TABLE IF NOT EXISTS donations (id varchar(255),username varchar(255) NOT NULL,donationcount int,PRIMARY KEY (username))")
+        except:
+            pass
+        try:
+            cursor.execute("CREATE TABLE IF NOT EXISTS prefixes (guildid varchar(255),prefix varchar(255) DEFAULT '!',PRIMARY KEY (prefix))")
+        except: 
+            pass
+        try:
+            cursor.execute("CREATE TABLE IF NOT EXISTS users (userid varchar(255),username varchar(255) NOT NULL, PRIMARY KEY (userid))")
+        except:
+            pass
+        self.conn.commit()
     def UpdateUser(self,username,id):
         self.setup()
         cursor = self.conn.cursor()
@@ -47,5 +58,27 @@ class SQLCon:
             val = "!"
 
         return val
+
+    def AddUser(self,userid,username):
+        try:
+            cursor = self.conn.cursor()
+            sql = f"INSERT INTO users VALUES ('{userid}','{username}')"
+            cursor.execute(sql)
+            self.conn.commit()
+        except:
+            self.setup()
+
+    def GetUser(self,userid):
+        try:
+            cursor = self.conn.cursor()
+            sql = f"SELECT * FROM users WHERE userid='{userid}'"
+            cursor.execute(sql)
+            rows = cursor.fetchall()
+            val = rows[0][1]
+            return val
+        except:
+            pass
+
+        return None
 
         
