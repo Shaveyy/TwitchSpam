@@ -6,10 +6,11 @@ import sys, traceback
 import glob
 import config.config as config
 import logger
+from scripts.sql import SQLCon
 # startup stuff for debugging
 print('using discordpy version', discord.__version__)
 
-client = commands.Bot(command_prefix='!', description='Donate money, or even a manual typewriter to me, FOR YOUR ONLY HOPE FOR A FUTURE')
+client = commands.Bot(command_prefix = "!", description='Donate money, or even a manual typewriter to me, FOR YOUR ONLY HOPE FOR A FUTURE')
 
 # this is where extensions are added by default
 default_extensions = [
