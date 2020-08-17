@@ -7,6 +7,8 @@ class MiscCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    # Add user to the DB on message
+    # Mainly for tracking usage
     @commands.Cog.listener()
     async def on_message(self, message):
         if message.author == self.bot.user:
@@ -16,7 +18,9 @@ class MiscCog(commands.Cog):
         if(sql.GetUser(message.author.id) == None):
             # Maybe add welcome message?
             sql.AddUser(message.author.id,message.author.name)
-    # ping command
+
+    # list commands command
+    # TODO make this automatically generate
     @commands.command()
     async def commands(self, ctx):
         await ctx.message.channel.send("""The commands are:
