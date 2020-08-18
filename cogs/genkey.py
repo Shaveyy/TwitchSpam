@@ -10,9 +10,17 @@ class GenKeyCog(commands.Cog):
 
     # ping command
     @commands.command()
-    async def genkey(self, ctx):
+    async def genkey(self, ctx,arg1=None,arg2=None):
         title = "Innit"
         game = "Old School Runescape"
+        if arg1:
+            if arg2:
+                title = arg1
+                game = arg2
+        else:
+            await ctx.message.channel.send("Please use all arguments")
+            return
+        
         stream_key,display_name = skey.GenStreamKey(title,game)
         
         embed = discord.Embed(title="Your Channel", color=0x00ff00)
