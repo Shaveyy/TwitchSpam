@@ -6,3 +6,4 @@ config.read('config.ini')
 token = config['DEFAULT']['Token']
 oauthsfile = config['DEFAULT']['OAuthFile']
 streamoauthsfile = config['DEFAULT']['StreamOAuths']
+defaultfollowamount = config['DEFAULT']['DefaultFollowAmount']

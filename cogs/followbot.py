@@ -5,7 +5,7 @@ import threading
 import requests
 import json
 import scripts.follow as follow
-
+import config.config as config
 
 class FollowCog(commands.Cog):
     def __init__(self, bot):
@@ -13,11 +13,12 @@ class FollowCog(commands.Cog):
     
     # ping command
     @commands.command()
-    async def followbot(self, ctx,arg1,arg2):
+    async def followbot(self, ctx,arg1,arg2=None):
         channel = arg1
-        amount = int(arg2)
-        if(amount == None):
-            amount = 10
+        if(arg2):
+            amount = int(arg2)
+        else:
+            amount = config.defaultfollowamount
             
         follow.start_following(channel,amount)
         await ctx.message.channel.send("Follow botting " + channel + "...")
