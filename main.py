@@ -41,6 +41,9 @@ async def on_ready():
     # print some stuff when the bot goes online
     print('Logged in ' + str(client.user.name) + ' - ' +
           str(client.user.id) + '\n' + 'Version ' + str(discord.__version__))
+          
+    logger.log(f"Bot has been started. Logged in as {str(client.user.name)} - {str(client.user.id)}")
+    logger.log(f"We're using discord.py version {str(discord.__version__)}")
     # a good way to let users know how to use the bot is by providing them with a help method
     # only way this can do them any good is by letting them know what the help command is
     await client.change_presence(activity=discord.Game('Try !commands'))

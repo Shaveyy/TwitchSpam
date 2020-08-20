@@ -6,6 +6,7 @@ import requests
 import json
 import scripts.follow as follow
 import config.config as config
+import logger
 
 class FollowCog(commands.Cog):
     def __init__(self, bot):
@@ -20,6 +21,7 @@ class FollowCog(commands.Cog):
         else:
             amount = config.defaultfollowamount
             
+        logger.log(f"Starting followbot on channel {channel} with amount {arg2}")
         follow.start_following(channel,amount)
         await ctx.message.channel.send("Follow botting " + channel + "...")
         return
