@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-class MiscCog(commands.Cog):
+class PollCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     @commands.command()
@@ -14,4 +14,4 @@ class MiscCog(commands.Cog):
         
 # add this cog to the bot
 def setup(bot):
-    bot.add_cog(MiscCog(bot))
+    bot.add_cog(PollCog(bot))
