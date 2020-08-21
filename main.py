@@ -49,4 +49,4 @@ async def on_ready():
     await client.change_presence(activity=discord.Game('Try !commands'))
 
 # now actually connect the bot
-client.run(config.token) #"NzM1OTExODAwNjM3NDg5MzA1.XxnMWw.unlzbthL0Jxtacfq1WgPBf3nVGI"
+client.run(config.token)
