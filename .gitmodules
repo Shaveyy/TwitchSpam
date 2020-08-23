@@ -1,0 +1,3 @@
+[submodule "ttvstream"]
+	path = ttvstream
+	url = https://github.com/Shaveyy/ttvstream
