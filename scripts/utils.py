@@ -29,7 +29,7 @@ def test_oauth(oauth):
     return isvalid
 
 def encode_video(filename):
-    os.system("/usr/bin/ffmpeg -i {0} -c:v libx264 -crf 37 -preset veryfast {1}.flv".format(filename,filename))
+    os.system("/usr/bin/ffmpeg -i {0}.mp4 -c:v libx264 -crf 37 -preset veryfast {1}.flv".format(filename,filename))
     os.system("/usr/bin/rm -rf {0}".format(filename))
 
 # gives the GLHF badge to an account of your choice
