@@ -82,7 +82,7 @@ class SpamCog(commands.Cog):
         t1 = threading.Thread(target=self.handle_channel_spam,args=(channel,accounts,bot_message))
         t1.daemon = True
         t1.start()
-        embed = discord.Embed(title="Spamming {0} with {1} accounts...".format(channel,accounts),description="[Consider Donating](https://ko-fi.com/shaveyy)" color=0x00ff00)
+        embed = discord.Embed(title="Spamming {0} with {1} accounts...".format(channel,accounts), description="[Consider Donating](https://ko-fi.com/shaveyy)", color=0x00ff00)
         embed.add_field(name="Message", value=bot_message, inline=False)
         embed.add_field(name="Channel", value=channel, inline=False)
         embed.add_field(name="Accounts", value=str(accounts),inline=False)
