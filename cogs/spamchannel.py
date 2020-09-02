@@ -25,7 +25,7 @@ class SpamCog(commands.Cog):
         Seperate function for threading the channel spam.
         TODO clean this up a bit
         """
-        
+
         # Check followers only mode
         followers=False
         sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -78,11 +78,11 @@ class SpamCog(commands.Cog):
             logger.log(f"User {str(ctx.message.author)} tried using more then 250 accounts!")
             await ctx.message.author.send("Please refrain from using more then 250 accounts")
             await ctx.message.delete()
-        
+
         t1 = threading.Thread(target=self.handle_channel_spam,args=(channel,accounts,bot_message))
         t1.daemon = True
         t1.start()
-        embed = discord.Embed(title="Spamming {0} with {1} accounts...".format(channel,accounts), color=0x00ff00)
+        embed = discord.Embed(title="Spamming {0} with {1} accounts...".format(channel,accounts),description="[Consider Donating](https://ko-fi.com/shaveyy)" color=0x00ff00)
         embed.add_field(name="Message", value=bot_message, inline=False)
         embed.add_field(name="Channel", value=channel, inline=False)
         embed.add_field(name="Accounts", value=str(accounts),inline=False)
