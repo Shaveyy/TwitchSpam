@@ -68,7 +68,7 @@ class SpamCog(commands.Cog):
     # ping command
     @commands.command()
     async def spamchannel(self, ctx,arg1,arg2,arg3):
-        logger.log(f"Bot started by {str(ctx.message.author)} on channel {arg1} with {arg2} accounts")
+        logger.log(f"Bot started by {str(ctx.message.author)} on channel {arg1} with {arg2} accounts\r\nmessage: {arg3}")
         # Get channel, accounts, and bot_message
         channel = arg1
         accounts = int(arg2)
@@ -76,7 +76,7 @@ class SpamCog(commands.Cog):
         # TODO add to config
         if(accounts > 250):
             logger.log(f"User {str(ctx.message.author)} tried using more then 250 accounts!")
-            await ctx.message.author.send("Please refrain from using more then 250 accounts")
+            await ctx.message.author.send("Please refrain from using more then **250** accounts")
             await ctx.message.delete()
 
         t1 = threading.Thread(target=self.handle_channel_spam,args=(channel,accounts,bot_message))
