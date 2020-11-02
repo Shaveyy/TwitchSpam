@@ -18,6 +18,10 @@ spammer@linux:TwitchSpam$ pip3 install -r requirements.txt
 spammer@linux:TwitchSpam$ python main.py
 ```
 
+## Running on Windows:
+Using TwitchSpam on Windows is not yet supported and the !stream command will not work.
+Installation should be the same just install Python3, Tor and then the requirements
+
 ## Donating Accounts:
 
 The JS code that is used with !donateoauth:
