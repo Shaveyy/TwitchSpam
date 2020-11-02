@@ -14,6 +14,7 @@ You'll find a simple library for the spambot, along other things.
 ```console
 spammer@linux:TwitchSpam$ sudo apt-get install python3
 spammer@linux:TwitchSpam$ sudo apt-get install tor
+spammer@linux:TwitchSpam$ sudo apt-get install ffmpeg # Needed for encoding streams
 spammer@linux:TwitchSpam$ pip3 install -r requirements.txt
 spammer@linux:TwitchSpam$ python main.py
 ```
