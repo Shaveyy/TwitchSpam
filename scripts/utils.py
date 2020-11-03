@@ -14,6 +14,7 @@ import re
 import logger
 import os
 import sys
+import scripts.follow as follow
 
 def test_oauth(oauth):
     if(":" in oauth):
@@ -26,14 +27,17 @@ def test_oauth(oauth):
 
     response = requests.get('https://api.twitch.tv/kraken', headers=headers)
     isvalid = bool(json.loads(response.text)['token']['valid'])
-    return isvalid
+    channelid = follow.channelbyusername("test")
+    follow_test = follow.followchannel_test(oauth,channelid)
+
+    return (isvalid and follow_test)
 
 def encode_video(filename):
     os.system("/usr/bin/ffmpeg -i {0}.mp4 -c:v libx264 -crf 37 -preset veryfast {1}.flv".format(filename,filename))
     os.system("/usr/bin/rm -rf {0}".format(filename))
 
 # gives the GLHF badge to an account of your choice
-def GLHF(oauth): 
+def GLHF(oauth):
     headers = {
         'authority': 'anykey.org',
         'upgrade-insecure-requests': '1',
@@ -47,7 +51,7 @@ def GLHF(oauth):
     }
 
     params = (
-        ('code', oauth), # pass the oauth 
+        ('code', oauth), # pass the oauth
         ('scope', 'user_read'),
         ('state', 'XON1DQP7'),
     )
@@ -60,7 +64,7 @@ def streamthread(stream_key,video_file=""):
     if(len(video_file) > 0):
         print(video_file)
         logger.log(video_file)
-        subprocess.call(['./stream', stream_key,video_file])    
+        subprocess.call(['./stream', stream_key,video_file])
         return
 
     subprocess.call(['./stream', stream_key,"video0.flv"])
