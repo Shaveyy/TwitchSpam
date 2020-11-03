@@ -14,9 +14,14 @@ You'll find a simple library for the spambot, along other things.
 ```console
 spammer@linux:TwitchSpam$ sudo apt-get install python3
 spammer@linux:TwitchSpam$ sudo apt-get install tor
+spammer@linux:TwitchSpam$ sudo apt-get install ffmpeg # Needed for encoding streams
 spammer@linux:TwitchSpam$ pip3 install -r requirements.txt
 spammer@linux:TwitchSpam$ python main.py
 ```
+
+## Running on Windows:
+Using TwitchSpam on Windows is not yet supported and the !stream command will not work.
+Installation should be the same just install Python3, Tor and then the requirements
 
 ## Donating Accounts:
 
