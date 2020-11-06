@@ -14,7 +14,7 @@ import re
 import logger
 import os
 import sys
-import scripts.follow as follow
+import twitchspam.follow as follow
 
 def test_oauth(oauth):
     if(":" in oauth):
