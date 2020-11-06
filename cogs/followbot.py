@@ -4,7 +4,7 @@ import math
 import threading
 import requests
 import json
-import scripts.follow as follow
+import twitchspam.follow as follow
 import config.config as config
 import logger
 

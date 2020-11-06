@@ -6,7 +6,7 @@ import sys, traceback
 import glob
 import config.config as config
 import logger
-from scripts.sql import SQLCon
+from twitchspam.sql import SQLCon
 # startup stuff for debugging
 print('using discordpy version', discord.__version__)
 

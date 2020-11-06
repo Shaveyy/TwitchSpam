@@ -1,9 +1,9 @@
 import discord
 from discord.ext import commands
 import math
-import scripts.utils as util
+import twitchspam.utils as util
 import threading
-from scripts.sql import SQLCon
+from twitchspam.sql import SQLCon
 import re
 import config.config as config
 

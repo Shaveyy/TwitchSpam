@@ -4,11 +4,11 @@ import math
 import threading
 import time
 import socket
-from scripts.bot import Bot
+from twitchspam.bot import Bot
 import random
 # Import followbot module
 import re
-import scripts.follow
+import twitchspam.follow
 import config.config as config
 import logger
 # discord.py calls groups of commands cogs
@@ -55,7 +55,7 @@ class SpamCog(commands.Cog):
         except: pass
         # Follow if follower only mode is on
         if(followers):
-            scripts.follow.start_following(channel,accounts)
+            twitchspam.follow.start_following(channel,accounts)
         # Create bots
         bots = Bot(channel)
         bots.CreateBots(accounts,config.oauthsfile,"localhost",9050)

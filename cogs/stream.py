@@ -1,8 +1,8 @@
 import discord
 from discord.ext import commands
 import math
-import scripts.utils as util
-import scripts.streamkeygen as skey
+import twitchspam.utils as util
+import twitchspam.streamkeygen as skey
 import threading
 
 class StreamCog(commands.Cog):

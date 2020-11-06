@@ -1,5 +1,5 @@
 import discord
-from scripts.bot import Bot
+from twitchspam.bot import Bot
 import time
 import random
 import requests
@@ -7,7 +7,7 @@ import json
 import os
 import urllib.request
 import threading
-import scripts.streamkeygen as skey
+import twitchspam.streamkeygen as skey
 import subprocess
 import socket
 import re

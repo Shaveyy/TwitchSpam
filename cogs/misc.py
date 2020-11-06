@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 import math
-from scripts.sql import SQLCon
+from twitchspam.sql import SQLCon
 
 class MiscCog(commands.Cog):
     def __init__(self, bot):
