@@ -74,7 +74,7 @@ class SpamCog(commands.Cog):
         bots.CreateBots(accounts,config.oauthsfile,"localhost",9050)
         # Send bot messages 3 times,
         # Add to config soon
-        await self.update_output("Bots have connected...\n Sending messages",message,embed)
+        await self.update_output("Bots have connected...\nSending messages",message,embed)
         for _ in range(3):
                 # Add random number to get around the 1 message limit
                 bots.SendMessage(bot_message)
