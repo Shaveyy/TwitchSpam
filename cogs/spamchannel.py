@@ -80,6 +80,7 @@ class SpamCog(commands.Cog):
                 time.sleep(1.25)
 
         await self.update_output("Finished sending bots",message,embed)
+        self.output = ""
         
     # ping command
     @commands.command()
