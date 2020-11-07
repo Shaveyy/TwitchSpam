@@ -1,6 +1,7 @@
 from datetime import date
 
 def log(string):
+    print(string)
     f = open("log.txt","a+")
     if type(string) is not str:
         string = repr(string)
