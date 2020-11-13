@@ -14,6 +14,6 @@ PyInstaller==4.0
 PySocks==1.7.1
 requests==2.25.0
 stem==1.8.0
-urllib3==1.26.1
+urllib3==1.26.2
 websockets==8.1
 yarl==1.6.2
