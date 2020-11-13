@@ -12,7 +12,7 @@ multidict==5.0.0
 Pillow==8.0.1
 PyInstaller==4.0
 PySocks==1.7.1
-requests==2.24.0
+requests==2.25.0
 stem==1.8.0
 urllib3==1.26.1
 websockets==8.1
