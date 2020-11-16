@@ -40,7 +40,7 @@ class SpamCog(commands.Cog):
         followers=False
         sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
         sock.connect(("irc.chat.twitch.tv" , 6667))
-        sock.send("PASS oauth:3joa4tvfl6dyb527bthp1fmncgnsi6\r\n".encode())
+        sock.send("PASS oauth:j57i18ck6bvr7owyj2grmmmktqsxgv\r\n".encode())
         sock.send("NICK lolsecurity\r\n".encode())
         # Request member perms to get the mode of the channel
         membership = "CAP REQ :twitch.tv/membership\r\n"
