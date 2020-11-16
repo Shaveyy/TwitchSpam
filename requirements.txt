@@ -8,7 +8,7 @@ colorama==0.4.4
 discord.py==1.5.1
 idna==2.10
 macholib==1.14
-multidict==5.0.0
+multidict==5.0.2
 Pillow==8.0.1
 PyInstaller==4.0
 PySocks==1.7.1
