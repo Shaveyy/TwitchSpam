@@ -10,7 +10,7 @@ idna==2.10
 macholib==1.14
 multidict==5.0.2
 Pillow==8.0.1
-PyInstaller==4.0
+PyInstaller==4.1
 PySocks==1.7.1
 requests==2.25.0
 stem==1.8.0
