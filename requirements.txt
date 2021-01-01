@@ -6,7 +6,7 @@ certifi==2020.11.8
 chardet==4.0.0
 colorama==0.4.4
 discord.py==1.5.1
-idna==2.10
+idna==3.0
 macholib==1.14
 multidict==5.0.2
 Pillow==8.0.1
