@@ -20,10 +20,6 @@ class DonateCog(commands.Cog):
             await ctx.message.author.send("Please input a valid oauth token")
             await ctx.message.delete()
             return
-        if not util.test_oauth(oauth):
-            await ctx.message.author.send("Please input a valid oauth token")
-            await ctx.message.delete()
-            return
 
         oauths = open(config.oauthsfile,"r").read().split("\n")
         for token in oauths:
