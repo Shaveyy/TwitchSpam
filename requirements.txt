@@ -2,7 +2,7 @@ aiohttp==3.7.3
 altgraph==0.17
 async-timeout==3.0.1
 attrs==20.3.0
-certifi==2020.11.8
+certifi==2020.12.5
 chardet==4.0.0
 colorama==0.4.4
 discord.py==1.6.0
