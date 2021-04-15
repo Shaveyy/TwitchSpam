@@ -36,53 +36,24 @@ class SpamCog(commands.Cog):
         Seperate function for threading the channel spam.
         TODO clean this up a bit
         """
-        # Check followers only mode
-        followers=False
-        sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-        sock.connect(("irc.chat.twitch.tv" , 6667))
-        sock.send("PASS oauth:j57i18ck6bvr7owyj2grmmmktqsxgv\r\n".encode())
-        sock.send("NICK lolsecurity\r\n".encode())
-        # Request member perms to get the mode of the channel
-        membership = "CAP REQ :twitch.tv/membership\r\n"
-        commands = "CAP REQ :twitch.tv/commands twitch.tv/tags\r\n"
-        sock.send(membership.encode())
-        sock.send(commands.encode())
-        await asyncio.sleep(1)
-        # Join the channel of choice
-        sock.send("JOIN #{}\r\n".format(channel).encode())
-        # Infinite loop until we find the followers only mode.
-        # Probably quit after 30 seconds of not finding it since this could be really wasteful threading wise
         try:
-            while(1):
-                data = sock.recv(1024)
-                recvdata = data.decode('utf-8')
-                p = re.search("@(.*?);",recvdata)
-                if p:
-                    follow = recvdata.split(";")[8]
-                    if follow.split("=")[1] != "-1":
-                        followers = True
-                    break
-        except: pass
-        # Follow if follower only mode is on
-        if(followers):
-            await self.update_output("Detected followers only mode. Followbotting...",message,embed)
-            twitchspam.follow.start_following(channel,accounts)
-        
-        await self.update_output("Creating bots...",message,embed)
-        # Create bots
-        bots = Bot(channel)
-        bots.CreateBots(accounts,config.oauthsfile,"localhost",9050)
-        # Send bot messages 3 times,
-        # Add to config soon
-        await self.update_output("Bots have connected...\nSending messages",message,embed)
-        for _ in range(3):
-                # Add random number to get around the 1 message limit
-                bots.SendMessage(bot_message)
-                time.sleep(1.25)
+            await self.update_output("Creating bots...",message,embed)
+            # Create bots
+            bots = Bot(channel)
+            bots.CreateBots(accounts,config.oauthsfile,"localhost",9050)
+            # Send bot messages 3 times,
+            # Add to config soon
+            await self.update_output("Bots have connected...\nSending messages",message,embed)
+            for _ in range(3):
+                    # Add random number to get around the 1 message limit
+                    bots.SendMessage(bot_message)
+                    time.sleep(1.25)
 
-        await self.update_output("Finished sending bots",message,embed)
-        self.output = ""
-        
+            await self.update_output("Finished sending bots",message,embed)
+            self.output = ""
+        except:
+            # Also clear if we hit an exception
+            self.output = ""
     # ping command
     @commands.command()
     async def spamchannel(self, ctx,arg1,arg2,arg3):
