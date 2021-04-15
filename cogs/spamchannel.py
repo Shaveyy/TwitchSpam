@@ -36,24 +36,16 @@ class SpamCog(commands.Cog):
         Seperate function for threading the channel spam.
         TODO clean this up a bit
         """
-        try:
-            await self.update_output("Creating bots...",message,embed)
-            # Create bots
-            bots = Bot(channel)
-            bots.CreateBots(accounts,config.oauthsfile,"localhost",9050)
-            # Send bot messages 3 times,
-            # Add to config soon
-            await self.update_output("Bots have connected...\nSending messages",message,embed)
-            for _ in range(3):
-                    # Add random number to get around the 1 message limit
-                    bots.SendMessage(bot_message)
-                    time.sleep(1.25)
+        # Create bots
+        bots = Bot(channel)
+        bots.CreateBots(accounts,config.oauthsfile,"localhost",9050)
+        # Send bot messages 3 times,
+        # Add to config soon
+        for _ in range(3):
+                # Add random number to get around the 1 message limit
+                bots.SendMessage(bot_message)
+                time.sleep(1.25)
 
-            await self.update_output("Finished sending bots",message,embed)
-            self.output = ""
-        except:
-            # Also clear if we hit an exception
-            self.output = ""
     # ping command
     @commands.command()
     async def spamchannel(self, ctx,arg1,arg2,arg3):
@@ -77,7 +69,10 @@ class SpamCog(commands.Cog):
         ETA += " Seconds"
         embed.add_field(name="ETA", value=ETA,inline=False)
         message = await ctx.message.channel.send(embed=embed)
-        await self.handle_channel_spam(channel,accounts,bot_message,message,embed)
+        
+        x = threading.Thread(target=asyncio.run, args=(self.handle_channel_spam(channel,accounts,bot_message,message,embed),))
+        x.start()
+        
 
         return
 

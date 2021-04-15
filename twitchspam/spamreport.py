@@ -2,25 +2,16 @@ import requests
 import json
 import threading
 import config.config as config
+import twitchspam.utils as utils
 
-def channelbyusername(channel):
-    url = "https://api.twitch.tv/kraken/users?login=" + channel
-    payload = {}
-    headers = {
-    'Accept': 'application/vnd.twitchtv.v5+json',
-    'Client-Id': 'kimne78kx3ncx6brgo4mv6wki5h1ko'
-    }
-    response = requests.request("GET",url,headers=headers,data=payload)
-    json_data = json.loads(response.text)
-    return (json_data['users'][0]['_id'])
-    
 def reportchannel(channel_id,i):
-    token = files[i].split(":")[1]
+    clientid = f[i].split(":")[0]
+    token = f[i].split(":")[2]
     headers = {
         'Connection': 'keep-alive',
         'Authorization': 'OAuth ' + token,
         'Accept-Language': 'en-US',
-        'Client-Id': 'kimne78kx3ncx6brgo4mv6wki5h1ko',
+        'Client-Id': clientid,
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
         'X-Device-Id': 'b542c99d713d05b2',
         'Content-Type': 'text/plain;charset=UTF-8',
@@ -41,7 +32,7 @@ def start_reporting(channel,amount):
     # Hacky
     global files
     files = open(config.oauthsfile).read().split("\n")
-    chan_id = channelbyusername(channel)
+    chan_id = utils.channelbyusername(channel)
     for i in range(amount): #len(files)
         if i > len(files):
             return

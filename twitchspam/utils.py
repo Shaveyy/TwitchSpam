@@ -16,6 +16,18 @@ import os
 import sys
 import twitchspam.follow as follow
 
+def channelbyusername(channel):
+    url = "https://api.twitch.tv/kraken/users?login=" + channel
+    payload = {}
+    headers = {
+    'Accept': 'application/vnd.twitchtv.v5+json',
+    'Client-Id': 'b31o4btkqth5bzbvr9ub2ovr79umhh'
+    }
+    response = requests.request("GET",url,headers=headers,data=payload)
+    json_data = json.loads(response.text)
+    print(response.text)
+    return (json_data['users'][0]['_id'])
+
 def test_oauth(oauth):
     if(":" in oauth):
         oauth = oauth.split(":")[1]
@@ -27,14 +39,11 @@ def test_oauth(oauth):
 
     response = requests.get('https://api.twitch.tv/kraken', headers=headers)
     isvalid = bool(json.loads(response.text)['token']['valid'])
-    channelid = follow.channelbyusername("test")
+    channelid = channelbyusername("test")
     follow_test = follow.followchannel_test(oauth,channelid)
 
     return (isvalid and follow_test)
 
-def encode_video(filename):
-    os.system("/usr/bin/ffmpeg -i {0}.mp4 -c:v libx264 -crf 37 -preset veryfast {1}.flv".format(filename,filename))
-    os.system("/usr/bin/rm -rf {0}".format(filename))
 
 # gives the GLHF badge to an account of your choice
 def GLHF(oauth):
@@ -60,14 +69,15 @@ def GLHF(oauth):
     response = requests.get('https://anykey.org/pledge', headers=headers, params=params)
     return response
 
-def streamthread(stream_key,video_file=""):
-    if(len(video_file) > 0):
-        print(video_file)
-        logger.log(video_file)
-        subprocess.call(['./stream', stream_key,video_file])
-        return
+def streamthread(stream_key,video_file):
+    os.system('bash -c "/usr/bin/ffmpeg -re -i ' + video_file + ' -vcodec libx264 -profile:v main -preset:v medium -r 30 -g 60 -keyint_min 60 -sc_threshold 0 -b:v 2500k -maxrate 2500k -bufsize 2500k -sws_flags lanczos+accurate_rnd -b:a 96k -ar 48000 -ac 2 -f flv rtmp://live.twitch.tv/app/' + stream_key + '"')
+    #if(len(video_file) > 0):
+    #    print(video_file)
+    #    logger.log(video_file)
+    #    subprocess.call(['./stream', stream_key,video_file])
+    #    return
 
-    subprocess.call(['./stream', stream_key,"video0.flv"])
+    #subprocess.call(['./stream', stream_key,"video0.flv"])
     return
 
 def start_stream(url,filename,stream_key):
@@ -78,8 +88,6 @@ def start_stream(url,filename,stream_key):
         filename = files[0]
     else:
         os.system(f"/usr/bin/wget {url} -O {sys.path[0]}/{filename}.mp4")
-    encode_video(filename)
-    filename += ".flv"
-    t1 = threading.Thread(target=streamthread,args=(stream_key,filename))
+    t1 = threading.Thread(target=streamthread,args=(stream_key,filename + '.mp4'))
     t1.daemon = True
     t1.start()

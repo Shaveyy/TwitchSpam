@@ -26,7 +26,9 @@ class Bot:
             #print(s.recv(2048))
             return s
         except:
-            pass
+            accounts = open(accountlist).read().split("\n")
+            _token = random.choice(accounts)
+            return self.StartSock(_token,proxyip,proxyport)
         
         return 0
 
@@ -68,6 +70,7 @@ class Bot:
         
         logger.log(f"Connecting with {amount} bots")
         for i in range(amount):
-            _token = random.choice(accounts)
+            line = random.choice(accounts)
+            _token = line.split(":")[2]
             self.socks.append(self.StartSock(_token,proxyip,proxyport))
-            accounts.pop(accounts.index(_token))
+            accounts.pop(accounts.index(line))

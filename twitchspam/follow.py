@@ -3,25 +3,16 @@ import threading
 import json
 import config.config as config
 import logger
-
-def channelbyusername(channel):
-    url = "https://api.twitch.tv/kraken/users?login=" + channel
-    payload = {}
-    headers = {
-    'Accept': 'application/vnd.twitchtv.v5+json',
-    'Client-Id': 'kimne78kx3ncx6brgo4mv6wki5h1ko'
-    }
-    response = requests.request("GET",url,headers=headers,data=payload)
-    json_data = json.loads(response.text)
-    return (json_data['users'][0]['_id'])
+import twitchspam.utils as utils
 
 def followchannel(f,channel_id,i):
-    token = f[i].split(":")[1]
+    clientid = f[i].split(":")[0]
+    token = f[i].split(":")[2]
     headers = {
         'Connection': 'keep-alive',
         'Authorization': 'OAuth ' + token,
         'Accept-Language': 'en-US',
-        'Client-Id': 'kimne78kx3ncx6brgo4mv6wki5h1ko',
+        'Client-Id': clientid,
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36',
         'X-Device-Id': 'b542c99d713d05b2',
         'Content-Type': 'text/plain;charset=UTF-8',
@@ -67,7 +58,7 @@ def start_following(channel,amount):
     if(not f):
         print("File could not open")
         logger.log("File could not open")
-    chan_id = channelbyusername(channel)
+    chan_id = utils.channelbyusername(channel)
     for i in range(amount):
         # Added threading to make it faster
         if(i > len(f)):

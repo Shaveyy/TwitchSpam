@@ -15,9 +15,9 @@ class DonateCog(commands.Cog):
     @commands.command()
     async def donateoauth(self, ctx,arg1):
         oauth = arg1 # check to see if oauth is valid
-        pattern = r"oauth:[0-9-a-z]{30}"
+        pattern = r"(.*?):oauth:[0-9-a-z]{30}"
         if not re.match(pattern,oauth):
-            await ctx.message.author.send("Please input a valid oauth token")
+            await ctx.message.author.send("Please input a valid oauth token\nNote: Due to a new API update you must specify the client-id aswell")
             await ctx.message.delete()
             return
 
