@@ -10,26 +10,34 @@ class Bot:
        self.socks = []
     
     def StartSock(self,oauthtoken,proxyip=None,proxyport=1080):
-        print("Creating sock")
-        s = socks.socksocket(socket.AF_INET, socket.SOCK_STREAM)
-        if(proxyip):
-            s.set_proxy(socks.SOCKS5,proxyip,proxyport)
+        try:
+            print("Creating sock")
+            s = socks.socksocket(socket.AF_INET, socket.SOCK_STREAM)
+            if(proxyip):
+                s.set_proxy(socks.SOCKS5,proxyip,proxyport)
 
-        s.connect(("irc.chat.twitch.tv" , 6667))
-        s.send("PASS {}\r\n".format(oauthtoken).encode())
-        s.send("NICK lolsecurity\r\n".encode())
-        join = "JOIN #" + self.channel + "\r\n"
-        s.send(join.encode())
-        #message = "PRIVMSG #" + channel + " :fuck you\r\n"
-        #s.send(message.encode())
-        #print(s.recv(2048))
-        return s
+            s.connect(("irc.chat.twitch.tv" , 6667))
+            s.send("PASS {}\r\n".format(oauthtoken).encode())
+            s.send("NICK lolsecurity\r\n".encode())
+            join = "JOIN #" + self.channel + "\r\n"
+            s.send(join.encode())
+            #message = "PRIVMSG #" + channel + " :fuck you\r\n"
+            #s.send(message.encode())
+            #print(s.recv(2048))
+            return s
+        except:
+            pass
+        
+        return 0
 
     def SendMessage(self,message,account=None):
         message = "PRIVMSG #{0} :{1}\r\n".format(self.channel,message)
         if(account):
             s = self.socks[account]
-            s.send(message.encode())
+            try:
+                s.send(message.encode())
+            except:
+                pass
         else:
             for s in self.socks:
                 try:
@@ -50,7 +58,11 @@ class Bot:
             if platform.system() == "Darwin":
                 os.system("brew services restart tor")
             else:
-                os.system("/usr/sbin/service tor restart")
+                try:
+                    os.system("/usr/sbin/service tor restart")
+                except:
+                    os.system("systemctl restart tor")
+
             time.sleep(.5)
         accounts = open(accountlist).read().split("\n")
         
