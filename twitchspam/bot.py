@@ -25,7 +25,8 @@ class Bot:
             #s.send(message.encode())
             return s
         except:
-            accounts = open(accountlist).read().split("\n")
+            # TODO adhere to config.ini 
+            accounts = open("oauthlist.txt").read().split("\n")
             _token = random.choice(accounts)
             return self.StartSock(_token,proxyip,proxyport)
         
