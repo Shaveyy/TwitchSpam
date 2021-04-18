@@ -15,6 +15,8 @@ import logger
 import os
 import sys
 import twitchspam.follow as follow
+import glob
+import youtube_dl
 
 def channelbyusername(channel):
     url = "https://api.twitch.tv/kraken/users?login=" + channel
@@ -70,24 +72,24 @@ def GLHF(oauth):
     return response
 
 def streamthread(stream_key,video_file):
-    os.system('bash -c "/usr/bin/ffmpeg -re -i ' + video_file + ' -vcodec libx264 -profile:v main -preset:v medium -r 30 -g 60 -keyint_min 60 -sc_threshold 0 -b:v 2500k -maxrate 2500k -bufsize 2500k -sws_flags lanczos+accurate_rnd -b:a 96k -ar 48000 -ac 2 -f flv rtmp://live.twitch.tv/app/' + stream_key + '"')
-    #if(len(video_file) > 0):
-    #    print(video_file)
-    #    logger.log(video_file)
-    #    subprocess.call(['./stream', stream_key,video_file])
-    #    return
-
-    #subprocess.call(['./stream', stream_key,"video0.flv"])
+    # TODO make this a bit safer 
+    os.system('bash -c "/usr/bin/ffmpeg -re -i \'' + video_file + '\' -vcodec libx264 -profile:v main -preset:v medium -r 30 -g 60 -keyint_min 60 -sc_threshold 0 -b:v 2500k -maxrate 2500k -bufsize 2500k -sws_flags lanczos+accurate_rnd -b:a 96k -ar 48000 -ac 2 -f flv rtmp://live.twitch.tv/app/' + stream_key + '"')
     return
 
 def start_stream(url,filename,stream_key):
-    if "youtube" in url or "bitchute" in url:
-        os.system(f"/usr/bin/youtube-dl {url} -o {sys.path[0]}/{filename}.mp4")
-        import glob
-        files = glob.glob(sys.path[0] + "/" + filename + ".*")
-        filename = files[0]
-    else:
-        os.system(f"/usr/bin/wget {url} -O {sys.path[0]}/{filename}.mp4")
-    t1 = threading.Thread(target=streamthread,args=(stream_key,filename + '.mp4'))
+    if not os.path.exists('videos'):
+        os.makedirs('videos')
+
+    ydl_opts = {
+        "outtmpl": f"{sys.path[0]}/videos/{filename}.%(ext)s"
+    }
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        ydl.download([url])
+    #os.system(f"/usr/bin/youtube-dl -f mp4 {url}")
+    files = glob.glob(f"{sys.path[0]}/videos/{filename}.*")
+    print(files)
+    filename = files[0]
+
+    t1 = threading.Thread(target=streamthread,args=(stream_key,filename))
     t1.daemon = True
     t1.start()
