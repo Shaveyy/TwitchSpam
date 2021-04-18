@@ -5,6 +5,7 @@ import config.config as config
 import twitchspam.utils as utils
 
 def reportchannel(channel_id,i):
+    f = open("oauthlist.txt", "r").read().split("\n")
     clientid = f[i].split(":")[0]
     token = f[i].split(":")[2]
     headers = {

@@ -23,10 +23,10 @@ class Bot:
             s.send(join.encode())
             #message = "PRIVMSG #" + channel + " :fuck you\r\n"
             #s.send(message.encode())
-            #print(s.recv(2048))
             return s
         except:
-            accounts = open(accountlist).read().split("\n")
+            # TODO adhere to config.ini 
+            accounts = open("oauthlist.txt").read().split("\n")
             _token = random.choice(accounts)
             return self.StartSock(_token,proxyip,proxyport)
         
@@ -66,11 +66,12 @@ class Bot:
                     os.system("systemctl restart tor")
 
             time.sleep(.5)
-        accounts = open(accountlist).read().split("\n")
+        accounts = open(accountlist).read().strip().split("\n")
         
         logger.log(f"Connecting with {amount} bots")
         for i in range(amount):
             line = random.choice(accounts)
-            _token = line.split(":")[2]
+            _token = 'oauth:' + line.split(":")[2]
+            print(_token)
             self.socks.append(self.StartSock(_token,proxyip,proxyport))
             accounts.pop(accounts.index(line))
