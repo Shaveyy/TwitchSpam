@@ -12,7 +12,7 @@ class FollowCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
-    # ping command
+    # followbot command
     @commands.command()
     async def followbot(self, ctx,arg1,arg2=None):
         channel = arg1

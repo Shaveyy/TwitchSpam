@@ -56,12 +56,13 @@ def followchannel_test(oauth,channel_id):
 def start_following(channel,amount):
     f = open(config.oauthsfile).read().split("\n")
     if(not f):
-        print("File could not open")
-        logger.log("File could not open")
+        print("File could not be opened")
+        logger.log("File could not be opened")
+        return
     chan_id = utils.channelbyusername(channel)
     for i in range(amount):
         # Added threading to make it faster
-        if(i > len(f)):
+        if(i >= len(f)):
             return
 
         x = threading.Thread(target=followchannel, args=(f,chan_id,i))

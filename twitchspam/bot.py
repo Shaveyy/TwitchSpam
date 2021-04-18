@@ -13,6 +13,7 @@ class Bot:
         try:
             print("Creating sock")
             s = socks.socksocket(socket.AF_INET, socket.SOCK_STREAM)
+            
             if(proxyip):
                 s.set_proxy(socks.SOCKS5,proxyip,proxyport)
 
@@ -52,6 +53,7 @@ class Bot:
             print("Using proxy {0} on port {1}".format(proxyip,proxyport))
             logger.log("Using proxy {0} on port {1}".format(proxyip,proxyport))
         # Check if user is using Tor
+        # Instead of checking the port we should just have a value that specifies it
         if(proxyport == 9050):
             import os
             import time

@@ -10,7 +10,7 @@ class GenKeyCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    # ping command
+    # genkey command
     @commands.command()
     async def genkey(self, ctx,arg1="Innit",arg2="Old School Runescape"):
         title = arg1

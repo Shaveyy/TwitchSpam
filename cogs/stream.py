@@ -10,7 +10,8 @@ class StreamCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    # ping command
+    # stream command
+    # TODO support looping the video
     @commands.command()
     async def stream(self, ctx, url, title = "gameplay of artifact", game = "Artifact", loop_amount = 0):
         if url:
