@@ -42,9 +42,8 @@ def test_oauth(oauth):
     response = requests.get('https://api.twitch.tv/kraken', headers=headers)
     isvalid = bool(json.loads(response.text)['token']['valid'])
     channelid = channelbyusername("test")
-    follow_test = follow.followchannel_test(oauth,channelid)
 
-    return (isvalid and follow_test)
+    return isvalid
 
 
 # gives the GLHF badge to an account of your choice

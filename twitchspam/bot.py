@@ -58,7 +58,7 @@ class Bot:
             import os
             import time
             import platform
-            # Get a new IP from tor by restarting it 
+            # Get a new IP from tor by restarting it
             if platform.system() == "Darwin":
                 os.system("brew services restart tor")
             else:

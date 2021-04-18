@@ -14,15 +14,12 @@ class FollowCog(commands.Cog):
     
     # followbot command
     @commands.command()
-    async def followbot(self, ctx,arg1,arg2=None):
-        channel = arg1
-        if(arg2):
-            amount = int(arg2)
-        else:
-            amount = config.defaultfollowamount
-            
-        logger.log(f"Starting followbot on channel {channel} with amount {arg2}")
-        follow.start_following(channel,amount)
+    async def followbot(self, ctx, channel, amount=config.defaultfollowamount):
+        amount = int(amount)
+
+        logger.log(f"Starting followbot on channel {channel} with amount {amount}")
+        followctx = follow.Follow(channel,amount)
+        await followctx.start_followbot()
         await ctx.message.channel.send("Follow botting " + channel + "...")
         return
 
