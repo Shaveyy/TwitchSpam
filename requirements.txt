@@ -17,3 +17,4 @@ stem==1.8.0
 urllib3==1.26.4
 websockets==8.1
 yarl==1.6.3
+youtube_dl==2021.4.17
