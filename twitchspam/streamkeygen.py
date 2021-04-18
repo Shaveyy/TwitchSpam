@@ -18,7 +18,7 @@ def GenStreamKey(title,game):
     display_name = json.loads(response.text)['login'] 
 
     headers = {
-        'Client-ID': _token,
+        'Client-ID': 'kimne78kx3ncx6brgo4mv6wki5h1ko',
         'Authorization': 'Bearer ' + _oauth,
     }
 

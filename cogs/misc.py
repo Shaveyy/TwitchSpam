@@ -13,12 +13,7 @@ class MiscCog(commands.Cog):
     async def on_message(self, message):
         if message.author == self.bot.user:
             return
-        # Add user
-        sql = SQLCon()
-        if(sql.GetUser(message.author.id) == None):
-            # Maybe add welcome message?
-            sql.AddUser(message.author.id,message.author.name)
-
+            
     # list commands command
     # TODO make this automatically generate
     @commands.command()
@@ -34,7 +29,7 @@ Gives you a stream key
 **!followbot {channel} {amount}**
 Followbot a user (this is a WIP)
 **!donateoauth {oauth}**
-Donates an OAuth token to your's truly :)
+Donates an OAuth token
 **!spamreport {channel} {amount}**
 Spam reports an account
         """)
