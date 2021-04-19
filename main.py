@@ -23,9 +23,11 @@ if __name__ == '__main__':
         # Ignore __init__.py
         if(fname.split("/")[-1].split(".")[0] == "__init__"):
             continue
+        if os.name == 'nt':
+            default_extensions.append('cogs.' + fname.split("\\")[-1].split(".")[0])
+        else:
+            default_extensions.append('cogs.' + fname.split("/")[-1].split(".")[0])
 
-        default_extensions.append('cogs.' + fname.split("/")[-1].split(".")[0])
-    
     # Load each extension
     for extension in default_extensions:
         try:
