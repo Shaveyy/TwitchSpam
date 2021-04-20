@@ -11,7 +11,7 @@ class Follow:
         self.channel = channel
         self.amount = amount
 
-    async def follow_channel(self, channel_id, f, i):
+    def follow_channel(self, channel_id, f, i):
         clientid = f[i].split(":")[0]
         token = f[i].split(":")[2]
         headers = {
@@ -46,4 +46,5 @@ class Follow:
             if(i >= len(f)):
                 return
 
-            asyncio.create_task(self.follow_channel(chan_id,f,i))
+            x = threading.Thread(target=self.follow_channel, args=(chan_id,f,i,))
+            x.start()
