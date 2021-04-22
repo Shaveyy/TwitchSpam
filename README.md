@@ -1,5 +1,7 @@
 # TwitchSpam
 
+
+### Features
 * Follow bot.
 * Spam reporting.
 * Spam bot, that evades shadowbans with Tor.
@@ -10,7 +12,7 @@ I'll provide a method to create accounts quickly, it works by taking the auth co
 You'll find a simple library for the spambot, along other things.
 
 
-## Using it on Linux:
+## Running on Linux:
 ```console
 spammer@linux:TwitchSpam$ sudo apt-get install python3
 spammer@linux:TwitchSpam$ sudo apt-get install tor
@@ -35,7 +37,7 @@ function getCookie(name) {
 }
 
 var token = getCookie("auth-token")
-console.log("\n\n\n\nCODE TO PASTE IN DISCORD:\n!donateoauth oauth:" + token + "\n\n\n\n")
+console.log("\n\n\n\nCODE TO PASTE IN DISCORD:\n!donateoauth kimne78kx3ncx6brgo4mv6wki5h1ko:oauth:" + token + "\n\n\n\n")
 ```
 
 Then do
