@@ -18,7 +18,7 @@ class StreamCog(commands.Cog):
             await ctx.message.channel.send("Encoding video...") 
             filename = str(uuid.uuid4())
             stream_key,display_name = skey.GenStreamKey(title,game)
-            t1 = threading.Thread(target=util.start_stream,args=(url,filename,stream_key))
+            t1 = threading.Thread(target=util.start_stream,args=(url,filename,stream_key,loop_amount))
             t1.daemon = True
             t1.start()
         else:

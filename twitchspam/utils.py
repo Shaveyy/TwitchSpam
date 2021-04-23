@@ -70,12 +70,12 @@ def GLHF(oauth):
     response = requests.get('https://anykey.org/pledge', headers=headers, params=params)
     return response
 
-def streamthread(stream_key,video_file):
+def streamthread(stream_key,video_file, loop_amount):
     # TODO make this a bit safer 
-    os.system('bash -c "/usr/bin/ffmpeg -re -i \'' + video_file + '\' -vcodec libx264 -profile:v main -preset:v medium -r 30 -g 60 -keyint_min 60 -sc_threshold 0 -b:v 2500k -maxrate 2500k -bufsize 2500k -sws_flags lanczos+accurate_rnd -b:a 96k -ar 48000 -ac 2 -f flv rtmp://live.twitch.tv/app/' + stream_key + '"')
+    os.system('bash -c "/usr/bin/ffmpeg -stream_loop ' + str(loop_amount) + ' -re -i \'' + video_file + '\' -vcodec libx264 -profile:v main -preset:v medium -r 30 -g 60 -keyint_min 60 -sc_threshold 0 -b:v 2500k -maxrate 2500k -bufsize 2500k -sws_flags lanczos+accurate_rnd -b:a 96k -ar 48000 -ac 2 -f flv rtmp://live.twitch.tv/app/' + stream_key + '"')
     return
 
-def start_stream(url,filename,stream_key):
+def start_stream(url,filename,stream_key, loop_amount):
     if not os.path.exists('videos'):
         os.makedirs('videos')
 
@@ -90,6 +90,6 @@ def start_stream(url,filename,stream_key):
     print(files)
     filename = files[0]
 
-    t1 = threading.Thread(target=streamthread,args=(stream_key,filename))
+    t1 = threading.Thread(target=streamthread,args=(stream_key,filename,loop_amount))
     t1.daemon = True
     t1.start()
