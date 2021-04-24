@@ -26,7 +26,7 @@ class StreamCog(commands.Cog):
             return
 
         embed = discord.Embed(title="Stream starting...", color=0x00ff00)
-        embed.add_field(name="Channel",value=display_name,inline=False)
+        embed.add_field(name="Channel",value=f"[{display_name}](https://twitch.tv/{display_name})",inline=False)
         await ctx.message.channel.send(embed=embed)
 
 # add this cog to the bot
