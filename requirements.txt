@@ -15,6 +15,6 @@ PySocks==1.7.1
 requests==2.25.1
 stem==1.8.0
 urllib3==1.26.4
-websockets==8.1
+websockets==9.0.1
 yarl==1.6.3
 youtube_dl==2021.4.26
